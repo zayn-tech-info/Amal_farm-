@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In - Amal Farm</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <style>
+        :root {
+            --primary-color: #562B08;
+            --secondary-color: #4C956C;
+            --bg-color: #FAF6F0;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-color);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .navbar-brand {
+            color: var(--primary-color);
+            font-weight: 600;
+            font-size: 1.5rem;
+        }
+
+        .navbar-brand img {
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        .sign-in-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            max-width: 500px;
+            width: 90%;
+            margin: 2rem auto;
+        }
+
+        .fish-icon {
+            width: 120px;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-control {
+            border: 1px solid #ddd;
+            padding: 0.75rem 1rem;
+            margin-bottom: 1rem;
+            border-radius: 8px;
+        }
+
+        .form-control:focus {
+            border-color: var(--secondary-color);
+            box-shadow: 0 0 0 0.2rem rgba(76, 149, 108, 0.25);
+        }
+
+        .btn-success {
+            background-color: var(--secondary-color);
+            border-color: var(--secondary-color);
+            padding: 0.75rem;
+            font-weight: 500;
+            width: 100%;
+            border-radius: 8px;
+            margin-top: 1rem;
+        }
+
+        .btn-success:hover {
+            background-color: #3d7a57;
+            border-color: #3d7a57;
+        }
+
+        .form-check-input:checked {
+            background-color: var(--secondary-color);
+            border-color: var(--secondary-color);
+        }
+
+        .sign-in-text {
+            color: var(--primary-color);
+            text-align: center;
+            margin: 2rem 0 1rem;
+        }
+
+        .sign-in-text h2 {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .sign-in-text p {
+            color: #666;
+            
+        }
+
+
+        .remember-me {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 1rem 0;
+        }
+
+        .remember-me a {
+            color: var(--secondary-color);
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .form-check-label {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .sign-up-link {
+            text-align: center;
+            margin-top: 1rem;
+            color: #666;
+        }
+
+        .sign-up-link a {
+            color: var(--secondary-color);
+            text-decoration: none;
+            font-weight: 500;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center mt-auto" href="index.html">
+                <img src="images/logo.png" alt="Amal Farm" class="site-logo">
+                <span class="fw-bold">AMAL FARM</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Sign In Form -->
+    <div class="container flex-grow-1 d-flex align-items-center">
+        <div class="sign-in-card mt-">
+            <div class="text-center ">
+                <img src="images/logo.png" alt="Fish Icon" class="fish-icon">
+                <div class="sign-in-text">
+                    <h2 class="mt-5">Sign In</h2>
+                    <p>Welcome back! Enter your details to continue.</p>
+                </div>
+            </div>
+            <form class="mb-5">
+                <div class="mb-3 ">
+                    <input type="email" class="form-control shadow-none" placeholder="Email Address" required>
+                </div>
+                <div class="mb-3">
+                    <input type="password" class="form-control shadow-none" placeholder="Password" required>
+                </div>
+                <div class="remember-me">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="rememberMe">
+                        <label class="form-check-label" for="rememberMe">
+                            Remember me
+                        </label>
+                    </div>
+                    <a href="#">Forgot Password?</a>
+                </div>
+                <button type="submit" class="btn btn-success">Sign In</button>
+                <div class="sign-up-link">
+                    Don't have an account? <a href="signup.html">Sign Up</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
