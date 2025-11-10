@@ -97,7 +97,7 @@
 
         .sign-in-text p {
             color: #666;
-            
+
         }
 
 
@@ -155,11 +155,14 @@
                 </div>
             </div>
             <form class="mb-5">
+                <p id="showError" style="display: none" class="alert alert-danger p-2 text-center text-danger"><img
+                        class="img-fluid" width="20" src="../images/icons8-caution-48.png" alt=""> Please fill in all inputs!</p>
+                        <p id="showError2" style="display: none" class="alert alert-danger p-2 text-center text-danger"><img class="img-fluid" width="20" src="../images/icons8-caution-48.png" alt=""> Invalid Login details!</p>
                 <div class="mb-3 ">
-                    <input type="email" class="form-control shadow-none" placeholder="Email Address" required>
+                    <input type="email" class="form-control shadow-none" placeholder="Email Address" id="email">
                 </div>
                 <div class="mb-3">
-                    <input type="password" class="form-control shadow-none" placeholder="Password" required>
+                    <input type="password" class="form-control shadow-none" placeholder="Password" id="password">
                 </div>
                 <div class="remember-me">
                     <div class="form-check">
@@ -170,9 +173,9 @@
                     </div>
                     <a href="#">Forgot Password?</a>
                 </div>
-                <button type="submit" class="btn btn-success">Sign In</button>
+                <button type="button" class="btn btn-success" onclick="signin()">Sign In</button>
                 <div class="sign-up-link">
-                    Don't have an account? <a href="signup.html">Sign Up</a>
+                    Don't have an account? <a href="../siginup/signup.html">Sign Up</a>
                 </div>
             </form>
         </div>
@@ -181,5 +184,6 @@
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+<script src="sigin.js"></script>
 
 </html>
