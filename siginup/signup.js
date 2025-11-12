@@ -35,7 +35,6 @@ const signUp = () => {
                     let passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/
                     const validPassword = passwordRegex.test(userObj.pass)
                     if (validPassword){
-                        
                         newUsers.push(userObj)
                         localStorage.setItem('amalFarm', JSON.stringify(newUsers))
                         alert('Registration successful')

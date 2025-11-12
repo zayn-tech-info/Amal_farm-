@@ -16,16 +16,79 @@
             --primary-color: #562B08;
             --secondary-color: #4C956C;
             --bg-color: #FAF6F0;
+            --gradient-1: linear-gradient(135deg, #4C956C 0%, #3d7a57 100%);
+            --gradient-2: linear-gradient(135deg, #FAF6F0 0%, #F5E6D3 100%);
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.8;
+            }
         }
 
         body {
             font-family: 'Poppins', sans-serif;
-            background-color: var(--bg-color);
+            background: var(--gradient-2);
         }
 
         .navbar-brand {
             color: var(--primary-color);
             font-weight: 600;
+            animation: fadeInDown 0.6s ease-out;
         }
 
         .navbar-brand img {
@@ -35,10 +98,28 @@
         .nav-link {
             color: var(--primary-color);
             font-weight: 500;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: var(--secondary-color);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
         }
 
         .nav-link:hover {
             color: var(--secondary-color);
+        }
+
+        .nav-link:hover::after {
+            width: 80%;
         }
 
         .cart-icon {
@@ -49,24 +130,31 @@
             position: absolute;
             top: -8px;
             right: -8px;
-            background-color: var(--secondary-color);
+            background: var(--gradient-1);
             color: white;
             border-radius: 50%;
             padding: 0.25rem 0.5rem;
             font-size: 0.75rem;
+            animation: scaleIn 0.3s ease-out;
         }
 
         .shop-header {
             padding: 2rem 0;
+            animation: fadeInDown 0.6s ease-out;
         }
 
         .shop-header h1 {
             color: var(--primary-color);
             font-weight: 600;
+            background: linear-gradient(135deg, #562B08 0%, #4C956C 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .category-pills {
             margin-bottom: 2rem;
+            animation: fadeInUp 0.6s ease-out 0.2s both;
         }
 
         .category-pill {
@@ -80,15 +168,18 @@
         }
 
         .category-pill.active {
-            background-color: var(--secondary-color);
+            background: var(--gradient-1);
             color: white;
             border-color: var(--secondary-color);
+            box-shadow: 0 4px 15px rgba(76, 149, 108, 0.3);
         }
 
         .category-pill:hover {
-            background-color: var(--secondary-color);
+            background: var(--gradient-1);
             color: white;
             border-color: var(--secondary-color);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(76, 149, 108, 0.3);
         }
 
         .product-card {
@@ -96,27 +187,55 @@
             border-radius: 12px;
             overflow: hidden;
             box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
+            transition: all 0.3s ease;
+            animation: fadeInUp 0.6s ease-out;
+            position: relative;
+        }
+
+        .product-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--gradient-1);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 1;
+            pointer-events: none;
         }
 
         .product-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 12px 25px rgba(76, 149, 108, 0.2);
+        }
+
+        .product-card:hover::before {
+            opacity: 0.03;
         }
 
         .product-img {
             width: 100%;
             height: 250px;
             object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover .product-img {
+            transform: scale(1.05);
         }
 
         .product-details {
             padding: 1.5rem;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.95) 0%, rgba(250, 246, 240, 0.5) 100%);
         }
 
         .product-title {
             color: var(--primary-color);
             font-weight: 600;
             margin-bottom: 0.5rem;
+            animation: fadeInUp 0.6s ease-out 0.1s both;
         }
 
         .product-price {
@@ -124,21 +243,79 @@
             font-weight: 600;
             font-size: 1.25rem;
             margin-bottom: 1rem;
+            animation: pulse 2s ease-in-out infinite;
         }
 
         .btn-add-cart {
-            background-color: var(--secondary-color);
+            background: var(--gradient-1);
             color: white;
             border: none;
             padding: 0.75rem 2rem;
             border-radius: 8px;
             width: 100%;
             font-weight: 500;
-            transition: background-color 0.3s ease;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-add-cart::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            transition: left 0.3s ease;
+        }
+
+        .btn-add-cart:hover::before {
+            left: 100%;
         }
 
         .btn-add-cart:hover {
-            background-color: #3d7a57;
+            background: linear-gradient(135deg, #3d7a57 0%, #2d5f44 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(76, 149, 108, 0.3);
+        }
+
+
+        /* 1. Parent Wrapper (The Clickable Area) */
+        .cart {
+            position: relative;
+            /* KEY: Enables absolute positioning of children */
+            cursor: pointer;
+            /* You might need to add display: flex; or similar layout properties
+       to align the icon and the badge nicely */
+        }
+
+        /* 2. Your Icon Image (Example styling) */
+        .cart-image {
+            width: 30px;
+            /* Adjust size as needed */
+            height: 30px;
+            display: block;
+            /* Helps with layout */
+        }
+
+        /* 3. The Number/Badge (The JS target) */
+        .cart-count {
+            position: absolute;
+            /* KEY: Allows exact placement */
+            top: -8px;
+            /* Adjust this to move it up/down */
+            right: -10px;
+            /* Adjust this to move it left/right */
+
+            /* Visual styles */
+            background-color: red;
+            color: white;
+            border-radius: 50%;
+            padding: 3px 6px;
+            font-size: 12px;
+            line-height: 1;
+            /* Ensures text is centered */
         }
 
         @media (max-width: 768px) {
@@ -169,7 +346,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav mx-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="index.html">HOME</a>
+                        <a class="nav-link" href="../index.html">HOME</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" href="../product/product.html">SHOP</a>
@@ -181,11 +358,11 @@
                         <a class="nav-link" href="../contact us/contact.html">CONTACT</a>
                     </li>
                 </ul>
-                <div class="cart-icon">
-                    <a href="#" class="text-dark">
-                        <i class="bi bi-cart fs-5"></i>
-                        <span class="cart-badge">0</span>
-                    </a>
+                <div class="cart" onclick="toggleCartPopup()">
+
+                    <button style="border: none ; background-color: transparent;"> <img src="../icon/icons8-cart-48.png"
+                            alt="Shopping Cart Icon" class="cart-image ">
+                        <span class="cart-count" id="cartCount">0</span></button>
                 </div>
             </div>
         </div>
@@ -213,9 +390,13 @@
                     <div class="product-card">
                         <img src="../images/fresh.jpg" alt="Fresh Catfish" class="product-img">
                         <div class="product-details">
-                            <h4 class="product-title">Fresh Catfish (1kg)</h4>
-                            <div class="product-price">₦3,500</div>
-                            <button class="btn-add-cart">ADD TO CART</button>
+                            <h4 class="product-title " id="fresh1">Fresh Catfish</h4>
+                            <div class="d-flex justify-content-between">
+                                <div class="product-price" id="price">₦3,500</div>
+                                <div class="product-price" id="kilo">1Kg</div>
+                            </div>
+                            <button class="btn-add-cart" onclick="addToCart()">ADD TO
+                                CART</button>
                         </div>
                     </div>
                 </div>
@@ -224,9 +405,13 @@
                     <div class="product-card">
                         <img src="../images/fresh 3.jpg" alt="Fresh Catfish" class="product-img">
                         <div class="product-details">
-                            <h4 class="product-title">Fresh Catfish (2kg)</h4>
-                            <div class="product-price">₦6,500</div>
-                            <button class="btn-add-cart">ADD TO CART</button>
+                            <h4 class="product-title " id="fresh1">Smooth Catfish</h4>
+                            <div class="d-flex justify-content-between">
+                                <div class="product-price" id="price">₦1,500</div>
+                                <div class="product-price" id="kilo">2Kg</div>
+                            </div>
+                            <button class="btn-add-cart" onclick="addToCart('Smooth Catfish', '1500', '1kg')">ADD TO
+                                CART</button>
                         </div>
                     </div>
                 </div>
@@ -235,9 +420,13 @@
                     <div class="product-card">
                         <img src="../images/fresh 4.avif" alt="Fresh Catfish" class="product-img">
                         <div class="product-details">
-                            <h4 class="product-title">Fresh Catfish (3kg)</h4>
-                            <div class="product-price">₦9,000</div>
-                            <button class="btn-add-cart">ADD TO CART</button>
+                            <h4 class="product-title " id="fresh1">Fresh Catfish</h4>
+                            <div class="d-flex justify-content-between">
+                                <div class="product-price" id="price">₦3,500</div>
+                                <div class="product-price" id="kilo">1Kg</div>
+                            </div>
+                            <button class="btn-add-cart" onclick="addToCart('Fresh Catfish', '3500', '1kg')">ADD TO
+                                CART</button>
                         </div>
                     </div>
                 </div>
@@ -246,9 +435,12 @@
                     <div class="product-card">
                         <img src="../images/fresh2.jpg" alt="Fresh Catfish" class="product-img">
                         <div class="product-details">
-                            <h4 class="product-title">Fresh Catfish (4kg)</h4>
-                            <div class="product-price">₦14,500</div>
-                            <button class="btn-add-cart">ADD TO CART</button>
+                            <h4 class="product-title " id="fresh1">Fresh Catfish</h4>
+                            <div class="d-flex justify-content-between">
+                                <div class="product-price" id="price">₦3,500</div>
+                                <div class="product-price" id="kilo">1Kg</div>
+                            </div>
+                            <button class="btn-add-cart" onclick="addToCart()">ADD TO CART</button>
                         </div>
                     </div>
                 </div>
@@ -257,9 +449,12 @@
                     <div class="product-card">
                         <img src="../images/smokeeeeed.jpeg" alt="Fresh Catfish" class="product-img">
                         <div class="product-details">
-                            <h4 class="product-title ">Smoked Catfish (1kg)</h4>
-                            <div class="product-price">₦3,500</div>
-                            <button class="btn-add-cart">ADD TO CART</button>
+                            <h4 class="product-title " id="fresh1">Fresh Catfish</h4>
+                            <div class="d-flex justify-content-between">
+                                <div class="product-price" id="price">₦3,500</div>
+                                <div class="product-price" id="kilo">1Kg</div>
+                            </div>
+                            <button class="btn-add-cart" onclick="addToCart()">ADD TO CART</button>
                         </div>
                     </div>
                 </div>
@@ -268,9 +463,12 @@
                     <div class="product-card">
                         <img src="../images/smoke fish.jpeg" alt="Fresh Catfish" class="product-img">
                         <div class="product-details">
-                            <h4 class="product-title">Smoked Catfish (2kg)</h4>
-                            <div class="product-price">₦6,500</div>
-                            <button class="btn-add-cart">ADD TO CART</button>
+                            <h4 class="product-title " id="fresh1">Fresh Catfish</h4>
+                            <div class="d-flex justify-content-between">
+                                <div class="product-price" id="price">₦3,500</div>
+                                <div class="product-price" id="kilo">1Kg</div>
+                            </div>
+                            <button class="btn-add-cart" onclick="addToCart()">ADD TO CART</button>
                         </div>
                     </div>
                 </div>
@@ -279,9 +477,12 @@
                     <div class="product-card">
                         <img src="../images/smoke 3kg.jpeg" alt="Fresh Catfish" class="product-img">
                         <div class="product-details">
-                            <h4 class="product-title">Smoked Catfish (3kg)</h4>
-                            <div class="product-price">₦9,000</div>
-                            <button class="btn-add-cart">ADD TO CART</button>
+                            <h4 class="product-title " id="fresh1">Fresh Catfish</h4>
+                            <div class="d-flex justify-content-between">
+                                <div class="product-price" id="price">₦3,500</div>
+                                <div class="product-price" id="kilo">1Kg</div>
+                            </div>
+                            <button class="btn-add-cart" onclick="addToCart()">ADD TO CART</button>
                         </div>
                     </div>
                 </div>
@@ -290,9 +491,12 @@
                     <div class="product-card">
                         <img src="../images/smoked 4kg.jpeg" alt="Fresh Catfish" class="product-img">
                         <div class="product-details">
-                            <h4 class="product-title">Smoked Catfish (4kg)</h4>
-                            <div class="product-price">₦14,500</div>
-                            <button class="btn-add-cart">ADD TO CART</button>
+                            <h4 class="product-title " id="fresh1">Fresh Catfish</h4>
+                            <div class="d-flex justify-content-between">
+                                <div class="product-price" id="price">₦3,500</div>
+                                <div class="product-price" id="kilo">1Kg</div>
+                            </div>
+                            <button class="btn-add-cart" onclick="addToCart()">ADD TO CART</button>
                         </div>
                     </div>
                 </div>
@@ -301,9 +505,12 @@
                     <div class="product-card">
                         <img src="../images/boneless3.png" alt="Fresh Catfish" class="product-img">
                         <div class="product-details">
-                            <h4 class="product-title ">Fillets Catfish (1kg)</h4>
-                            <div class="product-price">₦3,500</div>
-                            <button class="btn-add-cart">ADD TO CART</button>
+                            <h4 class="product-title " id="fresh1">Fresh Catfish</h4>
+                            <div class="d-flex justify-content-between">
+                                <div class="product-price" id="price">₦3,500</div>
+                                <div class="product-price" id="kilo">1Kg</div>
+                            </div>
+                            <button class="btn-add-cart" onclick="addToCart()">ADD TO CART</button>
                         </div>
                     </div>
                 </div>
@@ -312,9 +519,12 @@
                     <div class="product-card">
                         <img src="../images/boneless2.png" alt="Fresh Catfish" class="product-img">
                         <div class="product-details">
-                            <h4 class="product-title">Fillets Catfish (2kg)</h4>
-                            <div class="product-price">₦6,500</div>
-                            <button class="btn-add-cart">ADD TO CART</button>
+                            <h4 class="product-title " id="fresh1">Fresh Catfish</h4>
+                            <div class="d-flex justify-content-between">
+                                <div class="product-price" id="price">₦3,500</div>
+                                <div class="product-price" id="kilo">1Kg</div>
+                            </div>
+                            <button class="btn-add-cart" onclick="addToCart()">ADD TO CART</button>
                         </div>
                     </div>
                 </div>
@@ -323,9 +533,12 @@
                     <div class="product-card">
                         <img src="../images/boneless.jpeg" alt="Fresh Catfish" class="product-img">
                         <div class="product-details">
-                            <h4 class="product-title">Fillets Catfish (3kg)</h4>
-                            <div class="product-price">₦9,000</div>
-                            <button class="btn-add-cart">ADD TO CART</button>
+                            <h4 class="product-title " id="fresh1">Fresh Catfish</h4>
+                            <div class="d-flex justify-content-between">
+                                <div class="product-price" id="price">₦3,500</div>
+                                <div class="product-price" id="kilo">1Kg</div>
+                            </div>
+                            <button class="btn-add-cart" onclick="addToCart()">ADD TO CART</button>
                         </div>
                     </div>
                 </div>
@@ -334,10 +547,26 @@
                     <div class="product-card">
                         <img src="../images/boneless2.png" alt="Fresh Catfish" class="product-img">
                         <div class="product-details">
-                            <h4 class="product-title">Fillets Catfish (4kg)</h4>
-                            <div class="product-price">₦14,500</div>
-                            <button class="btn-add-cart">ADD TO CART</button>
+                            <h4 class="product-title " id="fresh1">Fresh Catfish</h4>
+                            <div class="d-flex justify-content-between">
+                                <div class="product-price" id="price">₦3,500</div>
+                                <div class="product-price" id="kilo">1Kg</div>
+                            </div>
+                            <button class="btn-add-cart" onclick="addToCart()">ADD TO CART</button>
                         </div>
+                    </div>
+                </div>
+
+
+                <div class="products d-no" id="products"></div>
+
+                <div class="cart-popup" id="cartPopup">
+                    <span class="close-btn" onclick="closeCartPopup()">&times;</span>
+                    <h3>Your Cart</h3>
+                    <div id="cart-items"></div>
+                    <div class="cart-footer">
+                        <p><strong>Total:</strong> $<span id="cart-total">0</span></p>
+                        <button class="clear" onclick="clearCart()">Clear Cart</button>
                     </div>
                 </div>
 
@@ -352,5 +581,6 @@
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+<script src="product.js"></script>
 
 </html>
