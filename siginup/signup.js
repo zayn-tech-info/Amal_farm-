@@ -22,7 +22,7 @@ const signUp = () => {
             last_name: lastName.value,
             mail: email.value,
             pass: password.value,
-            password: confirmPassword.value
+            password: confirmPassword.value,
         }
         let emailRegexString = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
         const confirmEmail = emailRegexString.test(userObj.mail)
@@ -34,21 +34,29 @@ const signUp = () => {
                 if (password.value.trim() === confirmPassword.value.trim()) {
                     let passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/
                     const validPassword = passwordRegex.test(userObj.pass)
-                    if (validPassword){
+                    if (validPassword) {
+                        signUpBtn.innerHTML = `<div class="d-flex justify-content-center">
+                                    <div class="spinner-border" role="status">
+                                    <span class="visually-hidden">Loading...</span>
+                                        </div>
+                                            </div>`
                         newUsers.push(userObj)
                         localStorage.setItem('amalFarm', JSON.stringify(newUsers))
+                        // localStorage.setItem('name', JSON.stringify(userObj.first_name))
                         alert('Registration successful')
-                        window.location.href = "../signin/signin.html"
-                    } else{
+                        setTimeout(() => {
+                            window.location.href = "../signin/signin.html"
+                        }, 2000)
+                    } else {
                         showError4.style.display = 'block'
                         showError3.style.display = 'none'
-                    }signin
-                }else{
+                    } signin
+                } else {
                     showError3.style.display = 'block'
                     showError4.style.display = 'none'
                 }
             }
-        }else {
+        } else {
             showError2.style.display = 'block'
         }
 

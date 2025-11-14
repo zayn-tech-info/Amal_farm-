@@ -97,6 +97,11 @@ body {
     color: var(--text-color);
 }
 
+/* ensure content does not sit under the sticky navbar */
+body {
+    padding-top: 9vh;
+}
+
 h1,
 h2,
 h3,
@@ -106,28 +111,27 @@ h6 {
     font-family: 'Playfair Display', serif;
 }
 
+/* Navbar basic styling (sticky) is defined below - no duplicate fixed block needed */
+
+
+/* Restore standard sticky navbar styling */
 .navbar {
-    position: sticky;
+    position: fixed;
     top: 0;
+    left: 0;
+    right: 0;
     z-index: 1030;
-    height: 15vh;
-    background: var(--gradient-2) !important;
+    height: 16vh;
+    /* padding: 0.5rem 1.5rem; */
+    background: var(--gradient-2);
     border: none !important;
-    border-top: none !important;
-    border-bottom: none !important;
-    border-left: none !important;
-    border-right: none !important;
     box-shadow: none !important;
     outline: none !important;
     animation: slideInDown 0.6s ease-out;
 }
 
-.navbar::after,
-.navbar::before {
-    display: none !important;
-    border: none !important;
-    box-shadow: none !important;
-}
+/* avoid content under fixed/sticky nav by adding top padding to body */
+
 
 /* Override all possible Bootstrap navbar borders */
 .navbar,
@@ -161,22 +165,92 @@ h6 {
     outline: none !important;
 }
 
+/* Ensure the default bootstrap toggler icon is visible and matches brand color */
+/* ensure toggler sits to the right on narrow screens */
+.navbar-toggler {
+    margin-left: auto;
+}
+
+.navbar-light .navbar-toggler-icon {
+    /* black hamburger to match brand color */
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'><path stroke='%23000000' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/></svg>");
+}
+
+/* brand text should be visible on the navbar background */
+.navbar .navbar-brand,
+.navbar .navbar-brand * {
+    color: black !important;
+}
+
+/* Mobile: keep logo left and show brand+toggler on the right */
+@media (max-width: 768px) {
+    .navbar {
+        padding: 0.5rem 1rem !important;
+        height: auto;
+    }
+
+    .navbar .container {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    /* ensure collapsed links are readable on the navbar background */
+    .navbar-nav .nav-link {
+        color: #fff !important;
+    }
+
+    .navbar-collapse .btn {
+        width: 100%;
+        margin: 0.5rem 0;
+    }
+
+    .navbar-brand {
+        /* fallback - not used for the left logo markup, keep neutral */
+        position: static;
+        left: auto;
+        transform: none;
+        margin-bottom: 0;
+        display: flex;
+        align-items: center;
+        gap: .5rem;
+    }
+
+    .navbar-toggler {
+        position: relative;
+        z-index: 1060;
+        /* keep above the absolute brand */
+    }
+
+    /* Make collapse full-width below the navbar */
+    .navbar-collapse {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--gradient-2) !important;
+        border: none !important;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.08);
+        padding: 1rem;
+        border-radius: 0 0 10px 10px;
+    }
+}
+
 .navbar-brand {
     border: none !important;
+    margin-bottom: 0;
+
+    /* removed large bottom gap so brand sits correctly on mobile */
 }
 
 .navbar-nav {
     border: none !important;
+
 }
 
 .navbar-nav .nav-link {
     border: none !important;
-}
-
-.navbar-collapse {
-    background-color: rgb(250, 236, 219);
-    border: none !important;
-    box-shadow: none !important;
 }
 
 @media (max-width: 768px) {
@@ -188,8 +262,9 @@ h6 {
         padding: 1rem;
         border-radius: 0 0 10px 10px;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        background-color: rgb(250, 236, 219);
+        background: var(--gradient-2) !important;
         border: none !important;
+        color: black;
     }
 
     .navbar-collapse .d-flex {
@@ -209,10 +284,21 @@ h6 {
 
 /* Site logo helpers */
 .site-logo {
-    /* even larger logo for desktop */
-    max-height: 112px;
-    width: auto;
+    /* larger logo for desktop */
+    width: 160px;
     display: inline-block;
+    height: auto;
+}
+
+/* helpers for the new navbar layout */
+.navbar-logo .site-logo {
+    width: 160px;
+    height: auto;
+}
+
+.navbar-brand-text {
+    color: var(--text-color);
+    white-space: nowrap;
 }
 
 .site-logo--footer {
@@ -256,6 +342,7 @@ h6 {
     animation: slideInLeft 0.8s ease-out;
     position: relative;
     z-index: 1;
+    margin-top: 2rem;
 }
 
 .about h2 {
@@ -278,9 +365,10 @@ h6 {
 }
 
 .about img {
-    width: 75%;
+    width: 100%;
     height: auto;
-    max-height: 70vh;
+    max-height: 550px;
+    max-width: 450px;
     object-fit: cover;
     border-radius: 50%;
     margin: 0 auto;
@@ -297,8 +385,9 @@ h6 {
 /* Responsive logo sizing */
 @media (max-width: 768px) {
     .site-logo {
-        /* even larger mobile logo */
-        max-height: 72px;
+        /* compact mobile logo */
+        width: 44px;
+        max-height: none;
     }
 
     .site-logo--footer {
@@ -306,20 +395,22 @@ h6 {
     }
 
     .about {
-        width: 50%;
+        width: 100%;
         height: auto;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-        border-radius: 30px;
+        margin: 2rem auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
-    .about image {
-        width: 40%;
+    .about img {
+        width: 100%;
+        max-width: 300px;
+        height: auto;
     }
 
     .hero {
-        height: 80vh;
+        height: 110vh;
     }
 
     .hero h1 {
@@ -336,7 +427,7 @@ h6 {
 }
 
 .nav-link {
-    color: var(--text-color);
+    color: black !important;
     font-weight: 500;
     padding: 0.5rem 1rem;
     position: relative;
@@ -746,29 +837,37 @@ footer ul li a:hover {
         align-items: center !important;
     }
 
-    /* Our Story section mobile fixes */
-    .our-story {
-        text-align: center;
-        padding: 40px 0;
+    /* Keep a single coherent navbar-collapse rule set: use the navbar gradient and no borders */
+    .navbar-collapse {
+        background: var(--gradient-2) !important;
+        border: none !important;
+        box-shadow: none !important;
     }
 
-    .about {
-        width: 100%;
-        margin: 30px auto;
-    }
+    /* Mobile: make the collapse panel full-width below the navbar and stack controls */
+    @media (max-width: 768px) {
+        .navbar-collapse {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            padding: 1rem;
+            border-radius: 0 0 10px 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.08);
+            background: var(--gradient-2) !important;
+            border: none !important;
+        }
 
-    .about img {
-        width: 60%;
-        max-width: 300px;
-        height: auto;
-        max-height: 300px;
-        margin: 0 auto 20px;
-    }
+        .navbar-collapse .d-flex {
+            flex-direction: column;
+            width: 100%;
+            gap: 0.5rem;
+        }
 
-    .our-story .btn {
-        margin: 0 auto;
-        display: block;
-        width: 200px;
+        .navbar-collapse .btn {
+            width: 100%;
+            margin: 0.25rem 0;
+        }
     }
 
     /* General spacing fixes */

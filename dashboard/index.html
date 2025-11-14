@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Dashboard - Amal Farm</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <!-- Dashboard CSS -->
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <a href="../index.html" class="sidebar-logo">
+                <img src="../images/amalllllllogo.png" alt="Amal Farm" class="logo-img" >
+                <span class="logo-text">Amal Farm</span>
+            </a>
+             <div class="header-right mb-3">
+                    <div class="login-time">
+                        <i class="fas fa-clock"></i>
+                        <span id="show"></span>
+                    </div>
+                    <!-- <div class="user-profile">
+                        <img src="../images/logo.png" alt="User Avatar" class="avatar">
+                        
+                    </div> -->
+                </div>
+
+            <nav class="sidebar-nav mb-5">
+                <a href="#overview" class="nav-item active" data-section="overview">
+                    <i class="fas fa-home"></i>
+                    <span>Account Overview</span>
+                </a>
+                <a href="#orders" class="nav-item" data-section="orders">
+                    <i class="fas fa-box"></i>
+                    <span>My Orders</span>
+                </a>
+                <a href="#my-orders" class="nav-item" data-section="my-orders">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span>My Orders</span>
+                </a>
+                <a href="#details" class="nav-item" data-section="details">
+                    <i class="fas fa-user"></i>
+                    <span>Account Details</span>
+                </a>
+                <a href="#shipping" class="nav-item" data-section="shipping">
+                    <i class="fas fa-truck"></i>
+                    <span>Shipping Address</span>
+                </a>
+                <a href="#reports" class="nav-item" data-section="reports">
+                    <i class="fas fa-chart-bar"></i>
+                    <span>Reports</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <a href="#logout" class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="dashboard-header">
+                <div class="header-left">
+                    <button class="sidebar-toggle" id="sidebarToggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+               
+            </header>
+
+            <!-- Dashboard Sections -->
+            <section class="content-wrapper">
+                <!-- Account Overview Section -->
+                <section id="overview" class="section-content active">
+                    <h2 class="section-title">Account Overview</h2>
+                    <span id="yourName" class="user-name mt-1 fw-bold fs-5"></span>
+
+                    <!-- Stats Cards -->
+                    <div class="stats-grid mt-1">
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-shopping-cart"></i>
+                            </div>
+                            <div class="stat-info">
+                                <p class="stat-value">6</p>
+                                <p class="stat-label">Total Orders</p>
+                            </div>
+                        </div>
+
+                        <div class="stat-card mt-1">
+                            <div class="stat-icon">
+                                <i class="fas fa-naira-sign"></i>
+                            </div>
+                            <div class="stat-info">
+                                <p class="stat-value"> ₦35,570</p>
+                                <p class="stat-label">Dec 15, 2025</p>
+                            </div>
+                        </div>
+
+                        <div class="stat-card mt-1">
+                            <div class="stat-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="stat-info">
+                                <p class="stat-value">2</p>
+                                <p class="stat-label">Saved Addresses</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Recent Orders Section -->
+                    <div class="section-box">
+                        <h3 class="box-title">Recent Orders</h3>
+                        <div class="table-responsive">
+                            <table class="orders-table">
+                                <thead>
+                                    <tr>
+                                        <th>Order</th>
+                                        <th>Date</th>
+                                        <th>Date</th>
+                                        <th>Status</th>
+                                        <th>Status</th>
+                                        <th>Status</th>
+                                        <th>Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="ordersTableBody">
+                                    <tr>
+                                        <td>Order ID</td>
+                                        <td>4</td>
+                                        <td><span class="badge badge-shipped">Shipped</span></td>
+                                        <td>1</td>
+                                        <td><span class="badge badge-pending">Pending</span></td>
+                                        <td><span class="badge badge-delivered">Delivered</span></td>
+                                        <td>₦5,200</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Perfect Chain</td>
+                                        <td>2</td>
+                                        <td><span class="badge badge-shipped">Shipped</span></td>
+                                        <td>0</td>
+                                        <td></td>
+                                        <td><span class="badge badge-warning">On Hold</span></td>
+                                        <td>₦3,800</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Two Column Layout for Account Details and Shipping -->
+                    <div class="info-grid">
+                        <!-- Account Details Section -->
+                        <div class="section-box">
+                            <h3 class="box-title">Account Details</h3>
+                            <div class="account-details">
+                                <div class="detail-item">
+                                    <p id="customerName"></p>
+                                    <p class="detail-value" id="customerEmail"></p>
+                                </div>
+                                <div class="detail-item">
+                                    <label>Latestemer Best</label>
+                                    <p class="detail-value">latestember@email.com</p>
+                                    <button class="btn btn-small btn-edit">Edit</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Shipping Addresses Section -->
+                        <div class="section-box">
+                            <h3 class="box-title">Shipping Addresses</h3>
+                            <div class="shipping-addresses">
+                                <div class="address-item">
+                                    <h4>David Chen</h4>
+                                    <p>Known city @ gmail.com/marchart</p>
+                                    <p>Known location</p>
+                                    <button class="btn btn-small btn-edit">Add New</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Orders Section -->
+                <section id="orders" class="section-content">
+                    <h2 class="section-title">My Orders</h2>
+                    <div class="section-box">
+                        <p class="placeholder-text">Order history and details will be displayed here.</p>
+                    </div>
+                </section>
+
+                <!-- Account Details Section -->
+                <section id="details" class="section-content">
+                    <h2 class="section-title">Account Details</h2>
+                    <div class="section-box">
+                        <form class="account-form">
+                            <div class="form-group">
+                                <label>Full Name</label>
+                                <input type="text" class="form-control" placeholder="Your full name">
+                            </div>
+                            <div class="form-group">
+                                <label>Email Address</label>
+                                <input type="email" class="form-control" placeholder="Your email">
+                            </div>
+                            <div class="form-group">
+                                <label>Phone Number</label>
+                                <input type="tel" class="form-control" placeholder="Your phone">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Save Changes</button>
+                        </form>
+                    </div>
+                </section>
+
+                <!-- Shipping Address Section -->
+                <section id="shipping" class="section-content">
+                    <h2 class="section-title">Shipping Addresses</h2>
+                    <div class="section-box">
+                        <p class="placeholder-text">Manage your shipping addresses here.</p>
+                    </div>
+                </section>
+
+                <!-- Reports Section -->
+                <section id="reports" class="section-content">
+                    <h2 class="section-title">Reports</h2>
+                    <div class="section-box">
+                        <p class="placeholder-text">Your purchase reports and analytics will be displayed here.</p>
+                    </div>
+                </section>
+            </section>
+        </main>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+<script src="dashboard.js"></script>
+</html>

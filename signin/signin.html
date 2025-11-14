@@ -16,40 +16,206 @@
             --primary-color: #562B08;
             --secondary-color: #4C956C;
             --bg-color: #FAF6F0;
+            --gradient-1: linear-gradient(135deg, #4C956C 0%, #3d7a57 100%);
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
         }
 
         body {
             font-family: 'Poppins', sans-serif;
-            background-color: var(--bg-color);
+            background: white;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
+            position: relative;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background Icons */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .floating-icon {
+            position: absolute;
+            font-size: 3rem;
+            color: rgba(100, 100, 100, 0.15);
+            opacity: 0.8;
+            animation: float 15s infinite ease-in-out;
+        }
+
+        /* Different animation delays for variety */
+        .floating-icon:nth-child(1) {
+            left: 5%;
+            top: 10%;
+            animation-delay: 0s;
+            animation-duration: 18s;
+        }
+
+        .floating-icon:nth-child(2) {
+            left: 15%;
+            top: 50%;
+            animation-delay: -5s;
+            animation-duration: 20s;
+        }
+
+        .floating-icon:nth-child(3) {
+            right: 10%;
+            top: 20%;
+            animation-delay: -10s;
+            animation-duration: 22s;
+        }
+
+        .floating-icon:nth-child(4) {
+            right: 8%;
+            top: 60%;
+            animation-delay: -3s;
+            animation-duration: 19s;
+        }
+
+        .floating-icon:nth-child(5) {
+            left: 50%;
+            top: 15%;
+            animation-delay: -8s;
+            animation-duration: 21s;
+        }
+
+        .floating-icon:nth-child(6) {
+            right: 30%;
+            bottom: 10%;
+            animation-delay: -12s;
+            animation-duration: 23s;
+        }
+
+        .floating-icon:nth-child(7) {
+            left: 20%;
+            bottom: 20%;
+            animation-delay: -2s;
+            animation-duration: 17s;
+        }
+
+        .floating-icon:nth-child(8) {
+            right: 50%;
+            top: 70%;
+            animation-delay: -7s;
+            animation-duration: 20s;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0px) translateX(0px) rotate(0deg);
+            }
+
+            25% {
+                transform: translateY(-30px) translateX(20px) rotate(90deg);
+            }
+
+            50% {
+                transform: translateY(-60px) translateX(-20px) rotate(180deg);
+            }
+
+            75% {
+                transform: translateY(-30px) translateX(10px) rotate(270deg);
+            }
+        }
+
+        .main-content {
+            position: relative;
+            z-index: 10;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: linear-gradient(135deg, rgba(26, 58, 42, 0.95) 0%, rgba(45, 90, 61, 0.95) 100%);
         }
 
         .navbar-brand {
             color: var(--primary-color);
             font-weight: 600;
             font-size: 1.5rem;
+            animation: fadeInDown 0.6s ease-out;
         }
 
         .navbar-brand img {
-            height: 40px;
+            width: 120px;
+            height: 50vh;
             margin-right: 10px;
         }
 
+        .auth-container {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 1rem;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+
         .sign-in-card {
-            background: white;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
             border-radius: 12px;
-            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
-            padding: 2rem;
+            box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.15);
+            padding: 2rem 1.5rem;
             max-width: 500px;
-            width: 90%;
-            margin: 2rem auto;
+            width: 100%;
+            animation: scaleIn 0.6s ease-out;
         }
 
         .fish-icon {
-            width: 120px;
-            margin-bottom: 1.5rem;
+            width: 155px;
+            margin: 0 auto 1.5rem;
+            display: block;
+            animation: fadeInDown 0.6s ease-out 0.2s both;
         }
 
         .form-control {
@@ -57,6 +223,16 @@
             padding: 0.75rem 1rem;
             margin-bottom: 1rem;
             border-radius: 8px;
+            transition: all 0.3s ease;
+            animation: fadeInUp 0.6s ease-out both;
+        }
+
+        .form-control:first-of-type {
+            animation-delay: 0.3s;
+        }
+
+        .form-control:last-of-type {
+            animation-delay: 0.35s;
         }
 
         .form-control:focus {
@@ -65,18 +241,38 @@
         }
 
         .btn-success {
-            background-color: var(--secondary-color);
-            border-color: var(--secondary-color);
+            background: var(--gradient-1);
+            border: none;
             padding: 0.75rem;
-            font-weight: 500;
+            font-weight: 600;
             width: 100%;
             border-radius: 8px;
-            margin-top: 1rem;
+            margin-top: 1.5rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 0.6s ease-out 0.45s both;
+        }
+
+        .btn-success::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            transition: left 0.3s ease;
+        }
+
+        .btn-success:hover::before {
+            left: 100%;
         }
 
         .btn-success:hover {
-            background-color: #3d7a57;
-            border-color: #3d7a57;
+            background: linear-gradient(135deg, #3d7a57 0%, #2d5f44 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(76, 149, 108, 0.3);
         }
 
         .form-check-input:checked {
@@ -88,30 +284,36 @@
             color: var(--primary-color);
             text-align: center;
             margin: 2rem 0 1rem;
+            animation: fadeInDown 0.6s ease-out 0.15s both;
         }
 
         .sign-in-text h2 {
-            font-weight: 600;
+            font-weight: 700;
             margin-bottom: 0.5rem;
+            font-size: 1.75rem;
+            background: linear-gradient(135deg, #562B08 0%, #4C956C 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .sign-in-text p {
             color: #666;
-
         }
-
 
         .remember-me {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin: 1rem 0;
+            animation: fadeInUp 0.6s ease-out 0.4s both;
         }
 
         .remember-me a {
             color: var(--secondary-color);
             text-decoration: none;
             font-size: 0.9rem;
+            font-weight: 600;
         }
 
         .form-check-label {
@@ -121,71 +323,82 @@
 
         .sign-up-link {
             text-align: center;
-            margin-top: 1rem;
+            margin-top: 1.5rem;
             color: #666;
+            animation: fadeInUp 0.6s ease-out 0.5s both;
         }
 
         .sign-up-link a {
             color: var(--secondary-color);
             text-decoration: none;
-            font-weight: 500;
+            font-weight: 600;
         }
     </style>
 </head>
 
 <body>
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-light" style="background: transparent; border: none; box-shadow: none;">
-        <div class="container">
-            <a class="navbar-brand d-flex align-items-center mt-auto" href="index.html">
-                <img src="../images/logo.png" alt="Amal Farm" class="site-logo">
-                <span class="fw-bold">AMAL FARM</span>
-            </a>
-        </div>
-    </nav>
-
-    <!-- Sign In Form -->
-    <div class="container flex-grow-1 d-flex align-items-center">
-        <div class="sign-in-card mt-">
-            <div class="text-center ">
-                <img src="../images/logo.png" alt="Fish Icon" class="fish-icon">
-                <div class="sign-in-text mt-4">
-                    <h2 class="mt-5">Sign In</h2>
-                    <p>Welcome back! Enter your details to continue.</p>
-                </div>
-            </div>
-            <form class="mb-5">
-                <p id="showError" style="display: none" class="alert alert-danger p-2 text-center text-danger"><img
-                        class="img-fluid" width="20" src="../images/icons8-caution-48.png" alt=""> Please fill in all
-                    inputs!</p>
-                <p id="showError2" style="display: none" class="alert alert-danger p-2 text-center text-danger"><img
-                        class="img-fluid" width="20" src="../images/icons8-caution-48.png" alt=""> Invalid Login
-                    details!</p>
-                <div class="mb-3 ">
-                    <input type="email" class="form-control shadow-none" placeholder="Email Address" id="email">
-                </div>
-                <div class="mb-3">
-                    <input type="password" class="form-control shadow-none" placeholder="Password" id="password">
-                </div>
-                <div class="remember-me">
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="rememberMe">
-                        <label class="form-check-label" for="rememberMe">
-                            Remember me
-                        </label>
-                    </div>
-                    <a href="#">Forgot Password?</a>
-                </div>
-                <button type="button" class="btn btn-success" onclick="signin()">Sign In</button>
-                <div class="sign-up-link">
-                    Don't have an account? <a href="../siginup/signup.html">Sign Up</a>
-                </div>
-            </form>
-        </div>
+    <!-- Animated Background -->
+    <div class="bg-animation">
+        <div class="floating-icon">🐠</div>
+        <div class="floating-icon">🐰</div>
+        <div class="floating-icon">🛒</div>
+        <div class="floating-icon">💱</div>
+        <div class="floating-icon">🐠</div>
+        <div class="floating-icon">🐰</div>
+        <div class="floating-icon">🛒</div>
+        <div class="floating-icon">💱</div>
     </div>
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Brand Name -->
+    <div
+        style="position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: white; padding: 1rem 1.5rem; text-align: left; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+        <a href="../index.html" style="color: #562B08; font-weight: 700; font-size: 1.2rem; text-decoration: none;">
+            AMAL FARM
+        </a>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content" style="padding-top: 70px;">
+        <!-- Sign In Form -->
+        <div class="auth-container">
+            <div class="sign-in-card">
+                <div class="text-center">
+                    <img src="../images/amalllllllogo.png" alt="Amal Farm Logo" class="fish-icon">
+                    <div class="sign-in-text">
+                        <h2>Welcome Back</h2>
+                        <p>Sign in to continue to your account.</p>
+                    </div>
+                </div>
+                <form>
+                    <p id="showError" style="display: none" class="alert alert-danger p-2 text-center text-danger"><img
+                            class="img-fluid" width="20" src="../images/icons8-caution-48.png" alt=""> Please fill in
+                        all
+                        inputs!</p>
+                    <p id="showError2" style="display: none" class="alert alert-danger p-2 text-center text-danger"><img
+                            class="img-fluid" width="20" src="../images/icons8-caution-48.png" alt=""> Invalid login
+                        details!</p>
+                    <input type="email" class="form-control shadow-none" placeholder="Email Address" id="email">
+                    <input type="password" class="form-control shadow-none" placeholder="Password" id="password">
+                    <div class="remember-me">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="rememberMe">
+                            <label class="form-check-label" for="rememberMe">
+                                Remember me
+                            </label>
+                        </div>
+                        <a href="#">Forgot Password?</a>
+                    </div>
+                    <button id="signInBtn" type="button" class="btn btn-success" onclick="signin()">Sign In</button>
+                    <div class="sign-up-link">
+                        Don't have an account? <a href="../siginup/signup.html">Sign Up</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- End Main Content -->
+
+        <!-- Bootstrap JS -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 <script src="sigin.js"></script>
 

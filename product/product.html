@@ -89,10 +89,13 @@
             color: var(--primary-color);
             font-weight: 600;
             animation: fadeInDown 0.6s ease-out;
+            padding: 0;
+            margin: 0;
         }
 
         .navbar-brand img {
-            height: 40px;
+            width: 100px;
+            height: auto;
         }
 
         .nav-link {
@@ -327,6 +330,7 @@
 
             .product-img {
                 height: 200px;
+
             }
         }
     </style>
@@ -334,10 +338,11 @@
 
 <body>
     <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-white py-3">
-        <div class="container">
+    <nav class="navbar navbar-expand-lg navbar-light bg-white"
+        style="position: sticky; top: 0; z-index: 1000; padding: 0.3rem 0;">
+        <div class="container d-flex align-items-center">
             <a class="navbar-brand d-flex align-items-center" href="index.html">
-                <img src="../images/logo.png" alt="Amal Farm" class="site-logo me-2">
+                <img src="../images/amalllllllogo.png" alt="Amal Farm" class="site-logo me-2">
                 Amal Farm
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -550,6 +555,63 @@
                             <h4 class="product-title " id="fresh1">Fresh Catfish</h4>
                             <div class="d-flex justify-content-between">
                                 <div class="product-price" id="price">₦3,500</div>
+                                <div class="product-price" id="kilo">1Kg</div>
+                            </div>
+                            <button class="btn-add-cart" onclick="addToCart()">ADD TO CART</button>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-md-6 col-lg-3">
+                    <div class="product-card">
+                        <img src="../images/local rabbit.jpeg" alt="Fresh Rabbit" class="product-img">
+                        <div class="product-details">
+                            <h4 class="product-title " id="fresh1">local rabbit</h4>
+                            <div class="d-flex justify-content-between">
+                                <div class="product-price" id="price">₦7,500</div>
+                                <div class="product-price" id="kilo">1Kg</div>
+                            </div>
+                            <button class="btn-add-cart" onclick="addToCart()">ADD TO CART</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-3">
+                    <div class="product-card">
+                        <img src="../images/new zealand.jpg" alt="Smoked Rabbit" class="product-img">
+                        <div class="product-details">
+                            <h4 class="product-title " id="fresh1">New zealand</h4>
+                            <div class="d-flex justify-content-between">
+                                <div class="product-price" id="price">₦8,200</div>
+                                <div class="product-price" id="kilo">1Kg</div>
+                            </div>
+                            <button class="btn-add-cart" onclick="addToCart()">ADD TO CART</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-3">
+                    <div class="product-card">
+                        <img src="../images/smoke rabbit.jpg" alt="Rabbit Fillets" class="product-img">
+                        <div class="product-details">
+                            <h4 class="product-title " id="fresh1">Smoked rabbit meat</h4>
+                            <div class="d-flex justify-content-between">
+                                <div class="product-price" id="price">₦8,500</div>
+                                <div class="product-price" id="kilo">1Kg</div>
+                            </div>
+                            <button class="btn-add-cart" onclick="addToCart()">ADD TO CART</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-3">
+                    <div class="product-card">
+                        <img src="../images/grilled.jpeg" alt="Dried Rabbit" class="product-img">
+                        <div class="product-details">
+                            <h4 class="product-title " id="fresh1">Grilled rabbit meat</h4>
+                            <div class="d-flex justify-content-between">
+                                <div class="product-price" id="price">₦9,000</div>
                                 <div class="product-price" id="kilo">1Kg</div>
                             </div>
                             <button class="btn-add-cart" onclick="addToCart()">ADD TO CART</button>
