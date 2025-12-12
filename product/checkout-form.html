@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - Amal Farm</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #006D5B;
+            --secondary-color: #4C956C;
+            --text-dark: #333;
+            --text-light: #666;
+            --border-light: #e0e0e0;
+        }
+
+        * {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: #f8f9fa;
+            padding-bottom: 2rem;
+        }
+
+        /* Navbar */
+        .navbar {
+            background: white !important;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            padding: 0.5rem 1.5rem;
+            z-index: 1000;
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            color: var(--primary-color) !important;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .navbar-brand img {
+            width: 100px;
+            height: auto;
+        }
+
+        .nav-link {
+            color: #000000 !important;
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        .nav-link:hover {
+            color: var(--primary-color) !important;
+        }
+
+        /* Checkout Header */
+        .checkout-header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            padding: 2rem 0;
+            margin-bottom: 2rem;
+        }
+
+        .checkout-header h1 {
+            font-weight: 700;
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .checkout-header p {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        /* Progress Steps */
+        .checkout-steps {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .checkout-steps::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--border-light);
+            z-index: 0;
+        }
+
+        .step {
+            flex: 1;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .step-number {
+            width: 40px;
+            height: 40px;
+            background: white;
+            border: 3px solid var(--border-light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 0.5rem;
+            font-weight: 600;
+            color: var(--text-light);
+            transition: all 0.3s ease;
+        }
+
+        .step.completed .step-number {
+            background: var(--secondary-color);
+            border-color: var(--secondary-color);
+            color: white;
+        }
+
+        .step.active .step-number {
+            background: var(--primary-color);
+            border-color: var(--primary-color);
+            color: white;
+        }
+
+        .step-label {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            font-weight: 500;
+        }
+
+        /* Main Content */
+        .checkout-container {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+        }
+
+        .checkout-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .section-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .section-title i {
+            color: var(--primary-color);
+        }
+
+        /* Form Styles */
+        .form-label {
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .form-control {
+            border: 1px solid var(--border-light);
+            padding: 0.75rem 1rem;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 0.2rem rgba(0, 109, 91, 0.15);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        /* Order Summary */
+        .order-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .order-item:last-child {
+            border-bottom: 2px solid var(--primary-color);
+            padding: 1rem 0;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .price-breakdown {
+            margin-top: 1rem;
+            padding-top: 1rem;
+        }
+
+        .price-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.75rem;
+            font-size: 0.95rem;
+        }
+
+        .price-row.total {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 2px solid var(--border-light);
+        }
+
+        /* Payment Methods */
+        .payment-method {
+            display: flex;
+            align-items: center;
+            padding: 1rem;
+            border: 2px solid var(--border-light);
+            border-radius: 6px;
+            margin-bottom: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .payment-method:hover {
+            border-color: var(--primary-color);
+            background: #f9f9f9;
+        }
+
+        .payment-method input[type="radio"] {
+            margin-right: 1rem;
+            cursor: pointer;
+        }
+
+        .payment-method input[type="radio"]:checked+label {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        .payment-method input[type="radio"]:checked {
+            accent-color: var(--primary-color);
+        }
+
+        .payment-method label {
+            cursor: pointer;
+            margin-bottom: 0;
+            flex: 1;
+        }
+
+        /* Buttons */
+        .btn-place-order {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            border: none;
+            color: white;
+            padding: 0.75rem 2rem;
+            font-weight: 600;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            width: 100%;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn-place-order:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(0, 109, 91, 0.2);
+            color: white;
+        }
+
+        .btn-place-order:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .checkout-container {
+                grid-template-columns: 1fr;
+            }
+
+            .checkout-header h1 {
+                font-size: 1.5rem;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Success Overlay & Message */
+        .success-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 9998;
+        }
+
+        .success-overlay.show {
+            display: block;
+        }
+
+        .success-message {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 0;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            z-index: 9999;
+            min-width: 500px;
+            max-height: 95vh;
+            overflow-y: auto;
+            animation: slideIn 0.4s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(0.9);
+            }
+
+            to {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1);
+            }
+        }
+
+        .success-message.show {
+            display: block;
+        }
+
+        .success-message>div:first-child {
+            padding: 2.5rem 2rem;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            border-radius: 12px 12px 0 0;
+        }
+
+        .success-message i {
+            font-size: 3rem;
+            color: white;
+            margin-bottom: 1rem;
+            animation: scaleIn 0.5s ease-out;
+        }
+
+        @keyframes scaleIn {
+            from {
+                transform: scale(0);
+            }
+
+            to {
+                transform: scale(1);
+            }
+        }
+
+        .success-message h2 {
+            color: white;
+            margin-bottom: 0.5rem;
+            font-size: 1.8rem;
+        }
+
+        .success-message>div:first-child p {
+            color: rgba(255, 255, 255, 0.9);
+            margin: 0;
+            font-size: 0.95rem;
+        }
+
+        .success-message p {
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+        }
+
+        .btn-success-action {
+            background: var(--primary-color);
+            border: none;
+            color: white;
+            padding: 0.75rem 2rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin: 1rem 0.5rem 0 0;
+        }
+
+        .btn-success-action:hover {
+            background: var(--secondary-color);
+        }
+
+        /* Toast Notification */
+        .success-toast {
+            display: none;
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, var(--secondary-color) 0%, #45a049 100%);
+            color: white;
+            padding: 1.5rem 2rem;
+            border-radius: 8px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+            z-index: 10000;
+            animation: slideInRight 0.5s ease-out;
+            max-width: 400px;
+        }
+
+        @keyframes slideInRight {
+            from {
+                transform: translateX(400px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .success-toast.hide {
+            animation: slideOutRight 0.5s ease-out forwards;
+        }
+
+        @keyframes slideOutRight {
+            from {
+                transform: translateX(0);
+                opacity: 1;
+            }
+
+            to {
+                transform: translateX(400px);
+                opacity: 0;
+            }
+        }
+
+        .success-toast-icon {
+            font-size: 1.5rem;
+            margin-right: 1rem;
+            vertical-align: middle;
+        }
+
+        .success-toast-content {
+            display: inline-block;
+        }
+
+        .success-toast h4 {
+            margin: 0 0 0.3rem 0;
+            font-size: 1rem;
+            font-weight: 700;
+        }
+
+        .success-toast p {
+            margin: 0;
+            font-size: 0.9rem;
+            opacity: 0.95;
+        }
+
+        @media (max-width: 768px) {
+            .success-toast {
+                right: 10px;
+                left: 10px;
+                max-width: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="../index.html">
+                <img src="../images/amalllllllogo.png" alt="Amal Farm">
+                Amal Farm
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="product.html">Shop</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../dashboard/index.html">Dashboard</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Checkout Header -->
+    <div class="checkout-header">
+        <div class="container">
+            <h1><i class="fas fa-credit-card"></i> Checkout</h1>
+            <p>Complete your purchase securely</p>
+        </div>
+    </div>
+
+    <!-- Progress Steps -->
+    <div class="container mb-4">
+        <div class="checkout-steps">
+            <div class="step completed">
+                <div class="step-number"><i class="fas fa-check"></i></div>
+                <div class="step-label">Cart</div>
+            </div>
+            <div class="step active">
+                <div class="step-number">2</div>
+                <div class="step-label">Checkout</div>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-label">Confirmation</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Checkout Content -->
+    <div class="container">
+        <div class="checkout-container">
+            <!-- Left Column: Checkout Form -->
+            <div>
+                <!-- Billing Information -->
+                <div class="checkout-section">
+                    <h2 class="section-title">
+                        <i class="fas fa-user"></i> Billing Information
+                    </h2>
+                    <form id="checkoutForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label">First Name *</label>
+                                <input type="text" class="form-control" id="firstName" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Last Name *</label>
+                                <input type="text" class="form-control" id="lastName" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Email Address *</label>
+                            <input type="email" class="form-control" id="email" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Phone Number *</label>
+                            <input type="tel" class="form-control" id="phone" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Address *</label>
+                            <input type="text" class="form-control" id="address" required>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label">City *</label>
+                                <input type="text" class="form-control" id="city" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">State *</label>
+                                <input type="text" class="form-control" id="state" required>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label">Postal Code *</label>
+                                <input type="text" class="form-control" id="postalCode" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Country *</label>
+                                <input type="text" class="form-control" id="country" value="Nigeria" required>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Shipping Method -->
+                <div class="checkout-section">
+                    <h2 class="section-title">
+                        <i class="fas fa-truck"></i> Shipping Method
+                    </h2>
+                    <div class="payment-method">
+                        <input type="radio" id="standardShip" name="shipping" value="0" checked>
+                        <label for="standardShip">Standard Shipping (3-5 business days) - FREE</label>
+                    </div>
+                    <div class="payment-method">
+                        <input type="radio" id="expressShip" name="shipping" value="1500">
+                        <label for="expressShip">Express Shipping (1-2 business days) - ₦1,500</label>
+                    </div>
+                </div>
+
+                <!-- Payment Method -->
+                <div class="checkout-section">
+                    <h2 class="section-title">
+                        <i class="fas fa-credit-card"></i> Payment Method
+                    </h2>
+                    <div class="payment-method">
+                        <input type="radio" id="cardPayment" name="payment" value="card" checked>
+                        <label for="cardPayment">
+                            <i class="fas fa-credit-card"></i> Credit/Debit Card
+                        </label>
+                    </div>
+                    <div class="payment-method">
+                        <input type="radio" id="bankPayment" name="payment" value="bank">
+                        <label for="bankPayment">
+                            <i class="fas fa-university"></i> Bank Transfer
+                        </label>
+                    </div>
+                    <div class="payment-method">
+                        <input type="radio" id="walletPayment" name="payment" value="wallet">
+                        <label for="walletPayment">
+                            <i class="fas fa-wallet"></i> Payment on Delivery
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="checkout-section">
+                    <button type="submit" class="btn-place-order" id="placeOrderBtn" form="checkoutForm">
+                        <i class="fas fa-lock"></i> Place Order
+                    </button>
+                    <button type="button" class="btn btn-secondary mt-2" onclick="window.location.href='checkout.html'">
+                        <i class="fas fa-arrow-left"></i> Back to Cart
+                    </button>
+                </div>
+            </div>
+
+            <!-- Right Column: Order Summary -->
+            <div>
+                <div class="checkout-section">
+                    <h2 class="section-title">
+                        <i class="fas fa-receipt"></i> Order Summary
+                    </h2>
+
+                    <div id="orderItems">
+                        <!-- Order items will be populated here -->
+                    </div>
+
+                    <div class="price-breakdown">
+                        <div class="price-row">
+                            <span>Subtotal:</span>
+                            <span id="subtotal">₦0</span>
+                        </div>
+                        <div class="price-row">
+                            <span>Shipping:</span>
+                            <span id="shippingCost">FREE</span>
+                        </div>
+                        <div class="price-row">
+                            <span>Tax (5%):</span>
+                            <span id="tax">₦0</span>
+                        </div>
+                        <div class="price-row total">
+                            <span>Total:</span>
+                            <span id="totalPrice">₦0</span>
+                        </div>
+                    </div>
+
+                    <div class="mt-3">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="termsCheck" required>
+                            <label class="form-check-label" for="termsCheck">
+                                I agree to the Terms & Conditions
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Security Badge -->
+                <div class="checkout-section text-center">
+                    <i class="fas fa-shield-alt"
+                        style="font-size: 2rem; color: var(--primary-color); margin-bottom: 1rem; display: block;"></i>
+                    <p style="font-size: 0.9rem; color: var(--text-light);">
+                        Your payment information is secure and encrypted.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Overlay -->
+    <div class="success-overlay" id="successOverlay"></div>
+
+    <!-- Toast Notification -->
+    <div class="success-toast" id="successToast">
+        <div class="success-toast-content">
+            <i class="fas fa-check-circle success-toast-icon"></i>
+            <h4>Payment Successful! ✓</h4>
+            <p id="toastMessage">Your order has been confirmed</p>
+        </div>
+    </div>
+
+    <!-- Success Message -->
+    <div class="success-message" id="successMessage">
+        <div>
+            <i class="fas fa-check-circle"></i>
+            <h2>Payment Successful!</h2>
+            <p id="orderNumber"></p>
+        </div>
+
+        <!-- Order Details / Receipt -->
+        <div style="padding: 2rem;">
+            <div id="orderDetails"></div>
+
+            <!-- Action Buttons -->
+            <div style="display: flex; gap: 1rem; justify-content: center; margin-top: 2rem; flex-wrap: wrap;">
+                <button class="btn-success-action" onclick="printReceipt()">
+                    <i class="fas fa-print"></i> Print Receipt
+                </button>
+                <button class="btn-success-action" onclick="window.location.href='product.html'">
+                    <i class="fas fa-shopping-bag"></i> Continue Shopping
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="checkout-form.js"></script>
+</body>
+
+</html>

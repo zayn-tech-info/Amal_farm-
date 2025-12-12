@@ -7,7 +7,8 @@ const signin = () => {
         const signInDetails = {
             mail: email.value,
             pass: password.value,
-            logInTime: new Date().toLocaleTimeString()
+            logInTime: new Date().toLocaleTimeString(),
+
         }
         console.log(signInDetails);
 
