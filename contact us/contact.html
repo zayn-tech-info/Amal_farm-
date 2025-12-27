@@ -1,282 +1,378 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Contact Us - Amal Farm</title>
     <!-- Bootstrap 5 CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
     <!-- Bootstrap Icons -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
+    />
     <style>
-        :root {
-            --primary-color: #562B08;
-            --secondary-color: #4C956C;
-            --bg-color: #FAF6F0;
-        }
+      :root {
+        --primary-color: #562b08;
+        --secondary-color: #4c956c;
+        --bg-color: #faf6f0;
+      }
 
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: var(--bg-color);
-        }
+      body {
+        font-family: "Poppins", sans-serif;
+        background-color: var(--bg-color);
+      }
 
-        .navbar-brand {
-            color: var(--primary-color);
-            font-weight: 600;
-        }
+      .navbar-brand {
+        color: var(--primary-color);
+        font-weight: 600;
+      }
 
-        .navbar-brand img {
-            width: 160px;
-            height: auto;
-        }
+      .navbar-brand img {
+        width: 160px;
+        height: auto;
+      }
 
-        .nav-link {
-            color: var(--primary-color);
-            font-weight: 500;
-        }
+      .nav-link {
+        color: var(--primary-color);
+        font-weight: 500;
+      }
 
-        .nav-link:hover {
-            color: var(--secondary-color);
-        }
+      .nav-link:hover {
+        color: var(--secondary-color);
+      }
 
-        .contact-header {
-            padding: 3rem 0;
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../images/contact-header.jpg');
-            background-size: cover;
-            background-position: center;
-            color: white;
-            text-align: center;
-        }
+      .contact-header {
+        padding: 3rem 0;
+        background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+          url("../images/contact-header.jpg");
+        background-size: cover;
+        background-position: center;
+        color: white;
+        text-align: center;
+      }
 
-        .contact-header h1 {
-            font-weight: 600;
-            margin-bottom: 1rem;
-        }
+      .contact-header h1 {
+        font-weight: 600;
+        margin-bottom: 1rem;
+      }
 
+      .contact-card {
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+        padding: 2rem;
+        margin-top: -50px;
+      }
+
+      .contact-info-card {
+        background-color: var(--primary-color);
+        color: white;
+        border-radius: 12px;
+        padding: 2rem;
+      }
+
+      .contact-info-item {
+        display: flex;
+        align-items: start;
+        margin-bottom: 1.5rem;
+      }
+
+      .contact-info-item i {
+        font-size: 1.5rem;
+        margin-right: 1rem;
+        color: var(--secondary-color);
+      }
+
+      .contact-info-item h4 {
+        font-size: 1.1rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .contact-info-item p {
+        margin: 0;
+        font-size: 0.9rem;
+        opacity: 0.9;
+      }
+
+      .form-control {
+        border: 1px solid #ddd;
+        padding: 0.75rem 1rem;
+        margin-bottom: 1rem;
+        border-radius: 8px;
+      }
+
+      .form-control:focus {
+        border-color: var(--secondary-color);
+        box-shadow: 0 0 0 0.2rem rgba(76, 149, 108, 0.25);
+      }
+
+      .btn-submit {
+        background-color: var(--secondary-color);
+        color: white;
+        border: none;
+        padding: 0.75rem 2rem;
+        border-radius: 8px;
+        font-weight: 500;
+        transition: background-color 0.3s ease;
+      }
+
+      .btn-submit:hover {
+        background-color: #3d7a57;
+      }
+
+      .social-links {
+        margin-top: 2rem;
+      }
+
+      .social-links a {
+        color: white;
+        font-size: 1.5rem;
+        margin-right: 1rem;
+        transition: color 0.3s ease;
+      }
+
+      .social-links a:hover {
+        color: var(--secondary-color);
+      }
+
+      .map-container {
+        border-radius: 12px;
+        overflow: hidden;
+        margin-top: 3rem;
+      }
+
+      @media (max-width: 768px) {
         .contact-card {
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
-            padding: 2rem;
-            margin-top: -50px;
+          margin-top: 0;
         }
-
-        .contact-info-card {
-            background-color: var(--primary-color);
-            color: white;
-            border-radius: 12px;
-            padding: 2rem;
-        }
-
-        .contact-info-item {
-            display: flex;
-            align-items: start;
-            margin-bottom: 1.5rem;
-        }
-
-        .contact-info-item i {
-            font-size: 1.5rem;
-            margin-right: 1rem;
-            color: var(--secondary-color);
-        }
-
-        .contact-info-item h4 {
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .contact-info-item p {
-            margin: 0;
-            font-size: 0.9rem;
-            opacity: 0.9;
-        }
-
-        .form-control {
-            border: 1px solid #ddd;
-            padding: 0.75rem 1rem;
-            margin-bottom: 1rem;
-            border-radius: 8px;
-        }
-
-        .form-control:focus {
-            border-color: var(--secondary-color);
-            box-shadow: 0 0 0 0.2rem rgba(76, 149, 108, 0.25);
-        }
-
-        .btn-submit {
-            background-color: var(--secondary-color);
-            color: white;
-            border: none;
-            padding: 0.75rem 2rem;
-            border-radius: 8px;
-            font-weight: 500;
-            transition: background-color 0.3s ease;
-        }
-
-        .btn-submit:hover {
-            background-color: #3d7a57;
-        }
-
-        .social-links {
-            margin-top: 2rem;
-        }
-
-        .social-links a {
-            color: white;
-            font-size: 1.5rem;
-            margin-right: 1rem;
-            transition: color 0.3s ease;
-        }
-
-        .social-links a:hover {
-            color: var(--secondary-color);
-        }
-
-        .map-container {
-            border-radius: 12px;
-            overflow: hidden;
-            margin-top: 3rem;
-        }
-
-        @media (max-width: 768px) {
-            .contact-card {
-                margin-top: 0;
-            }
-        }
+      }
     </style>
-</head>
+  </head>
 
-<body>
+  <body>
     <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-light py-3"
-        style="background: transparent; border: none; box-shadow: none;">
-        <div class="container">
-            <a class="navbar-brand d-flex align-items-center" href="index.html">
-                <img src="../images/amalllllllogo.png" alt="Amal Farm" class="site-logo me-2">
-                Amal Farm
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav mx-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.html">HOME</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="../product/product.html">SHOP</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">ABOUT</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="../contact us/contact.html">CONTACT</a>
-                    </li>
-                </ul>
-                <!-- <div class="cart-icon">
-                    <a href="#" class="text-dark">
-                        <i class="bi bi-cart fs-5"></i>
-                        <span class="cart-badge">0</span>
-                    </a>
-                </div> -->
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg">
+      <div class="container">
+        <!-- Brand -->
+        <a class="navbar-brand d-flex align-items-center" href="../index.html">
+          <img
+            src="../images/amalllllllogo.png"
+            alt="Amal Farm"
+            class="site-logo me-2"
+          />
+          <span class="fw-bold" style="color: #000">Amal Farm</span>
+        </a>
+
+        <!-- Mobile Toggle -->
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Menu Links -->
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" href="../index.html">HOME</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../product/product.html">SHOP</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../index.html#about">ABOUT</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="contact.html">CONTACT</a>
+            </li>
+          </ul>
+
+          <!-- Right Side Actions -->
+          <div class="d-flex align-items-center gap-3">
+            <!-- Cart Icon -->
+            <div
+              class="cart position-relative me-2"
+              onclick="toggleCartPopup()"
+              style="cursor: pointer"
+            >
+              <button
+                style="border: none; background-color: transparent; padding: 0"
+              >
+                <img
+                  src="../icon/icons8-cart-48.png"
+                  alt="Cart"
+                  style="width: 28px; height: 28px"
+                />
+                <span
+                  class="js-cart-quantity position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                  style="font-size: 0.7rem"
+                  >0</span
+                >
+              </button>
             </div>
+
+            <!-- Auth Buttons -->
+            <div class="d-none d-lg-flex gap-2">
+              <a
+                href="../signin/signin.html"
+                class="btn btn-outline-success btn-sm fw-bold"
+                >Sign In</a
+              >
+              <a
+                href="../siginup/signup.html"
+                class="btn btn-success btn-sm fw-bold text-white"
+                >Sign Up</a
+              >
+            </div>
+          </div>
         </div>
+      </div>
     </nav>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const cart = JSON.parse(localStorage.getItem("cartItems")) || [];
+        const total = cart.reduce((sum, i) => sum + i.quantity, 0);
+        document
+          .querySelectorAll(".js-cart-quantity")
+          .forEach((e) => (e.textContent = total));
+      });
+      function toggleCartPopup() {
+        const cart = JSON.parse(localStorage.getItem("cartItems")) || [];
+        if (cart.length > 0) window.location.href = "../product/checkout.html";
+        else alert("Cart is empty!");
+      }
+    </script>
 
     <!-- Contact Header -->
     <header class="contact-header">
-        <div class="container">
-            <h1>Contact Us</h1>
-            <p>Get in touch with us for any questions or inquiries</p>
-        </div>
+      <div class="container">
+        <h1>Contact Us</h1>
+        <p>Get in touch with us for any questions or inquiries</p>
+      </div>
     </header>
 
     <!-- Contact Section -->
     <section class="contact-section py-5">
-        <div class="container">
-            <div class="contact-card">
+      <div class="container">
+        <div class="contact-card">
+          <div class="row">
+            <!-- Contact Form -->
+            <div class="col-lg-7 pe-lg-4">
+              <h2 class="mb-4" style="color: var(--primary-color)">
+                Send Us a Message
+              </h2>
+              <form>
                 <div class="row">
-                    <!-- Contact Form -->
-                    <div class="col-lg-7 pe-lg-4">
-                        <h2 class="mb-4" style="color: var(--primary-color);">Send Us a Message</h2>
-                        <form>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <input type="text" class="form-control" placeholder="Your Name" required>
-                                </div>
-                                <div class="col-md-6">
-                                    <input type="email" class="form-control" placeholder="Your Email" required>
-                                </div>
-                            </div>
-                            <input type="text" class="form-control" placeholder="Subject">
-                            <textarea class="form-control" rows="5" placeholder="Your Message" required></textarea>
-                            <button type="submit" class="btn btn-submit mt-3">Send Message</button>
-                        </form>
-                    </div>
-
-                    <!-- Contact Info -->
-                    <div class="col-lg-5 mt-4 mt-lg-0">
-                        <div class="contact-info-card">
-                            <h3 class="mb-4">Contact Information</h3>
-
-                            <div class="contact-info-item">
-                                <i class="bi bi-geo-alt"></i>
-                                <div>
-                                    <h4>Location</h4>
-                                    <p>Oyo State, Nigeria</p>
-                                </div>
-                            </div>
-
-                            <div class="contact-info-item">
-                                <i class="bi bi-telephone"></i>
-                                <div>
-                                    <h4>Phone</h4>
-                                    <p>+234 81 6768 9073</p>
-                                </div>
-                            </div>
-
-                            <div class="contact-info-item">
-                                <i class="bi bi-envelope"></i>
-                                <div>
-                                    <h4>Email</h4>
-                                    <p>info@amalfarm.ng</p>
-                                </div>
-                            </div>
-
-                            <div class="contact-info-item">
-                                <i class="bi bi-clock"></i>
-                                <div>
-                                    <h4>Business Hours</h4>
-                                    <p>Monday - Saturday: 8:00 AM - 6:00 PM</p>
-                                </div>
-                            </div>
-
-                            <div class="social-links">
-                                <a href="#"><i class="bi bi-facebook"></i></a>
-                                <a href="#"><i class="bi bi-instagram"></i></a>
-                                <a href="#"><i class="bi bi-twitter"></i></a>
-                                <a href="#"><i class="bi bi-whatsapp"></i></a>
-                            </div>
-                        </div>
-                    </div>
+                  <div class="col-md-6">
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Your Name"
+                      required
+                    />
+                  </div>
+                  <div class="col-md-6">
+                    <input
+                      type="email"
+                      class="form-control"
+                      placeholder="Your Email"
+                      required
+                    />
+                  </div>
                 </div>
+                <input type="text" class="form-control" placeholder="Subject" />
+                <textarea
+                  class="form-control"
+                  rows="5"
+                  placeholder="Your Message"
+                  required
+                ></textarea>
+                <button type="submit" class="btn btn-submit mt-3">
+                  Send Message
+                </button>
+              </form>
             </div>
 
-            <!-- Map -->
-            <div class="map-container">
-                <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3963.3388066565547!2d3.3791163!3d6.6012728!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNsKwMzYnMDQuNiJOIDPCsDIyJzQ0LjgiRQ!5e0!3m2!1sen!2sng!4v1635678901234!5m2!1sen!2sng"
-                    width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy">
-                </iframe>
+            <!-- Contact Info -->
+            <div class="col-lg-5 mt-4 mt-lg-0">
+              <div class="contact-info-card">
+                <h3 class="mb-4">Contact Information</h3>
+
+                <div class="contact-info-item">
+                  <i class="bi bi-geo-alt"></i>
+                  <div>
+                    <h4>Location</h4>
+                    <p>Oyo State, Nigeria</p>
+                  </div>
+                </div>
+
+                <div class="contact-info-item">
+                  <i class="bi bi-telephone"></i>
+                  <div>
+                    <h4>Phone</h4>
+                    <p>+234 81 6768 9073</p>
+                  </div>
+                </div>
+
+                <div class="contact-info-item">
+                  <i class="bi bi-envelope"></i>
+                  <div>
+                    <h4>Email</h4>
+                    <p>info@amalfarm.ng</p>
+                  </div>
+                </div>
+
+                <div class="contact-info-item">
+                  <i class="bi bi-clock"></i>
+                  <div>
+                    <h4>Business Hours</h4>
+                    <p>Monday - Saturday: 8:00 AM - 6:00 PM</p>
+                  </div>
+                </div>
+
+                <div class="social-links">
+                  <a href="#"><i class="bi bi-facebook"></i></a>
+                  <a href="#"><i class="bi bi-instagram"></i></a>
+                  <a href="#"><i class="bi bi-twitter"></i></a>
+                  <a href="#"><i class="bi bi-whatsapp"></i></a>
+                </div>
+              </div>
             </div>
+          </div>
         </div>
+
+        <!-- Map -->
+        <div class="map-container">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3963.3388066565547!2d3.3791163!3d6.6012728!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNsKwMzYnMDQuNiJOIDPCsDIyJzQ0LjgiRQ!5e0!3m2!1sen!2sng!4v1635678901234!5m2!1sen!2sng"
+            width="100%"
+            height="450"
+            style="border: 0"
+            allowfullscreen=""
+            loading="lazy"
+          >
+          </iframe>
+        </div>
+      </div>
     </section>
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-
+  </body>
 </html>

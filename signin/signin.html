@@ -350,12 +350,85 @@
     </div>
 
     <!-- Brand Name -->
-    <div
-        style="position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: white; padding: 1rem 1.5rem; text-align: left; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
-        <a href="../index.html" style="color: #562B08; font-weight: 700; font-size: 1.2rem; text-decoration: none;">
-            AMAL FARM
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg">
+      <div class="container">
+        <!-- Brand -->
+        <a class="navbar-brand d-flex align-items-center" href="../index.html">
+          <img
+            src="../images/amalllllllogo.png"
+            alt="Amal Farm"
+            class="site-logo me-2"
+          />
+          <span class="fw-bold" style="color: #000;">Amal Farm</span>
         </a>
-    </div>
+
+        <!-- Mobile Toggle -->
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Menu Links -->
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" href="../index.html">HOME</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../product/product.html">SHOP</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../index.html#about">ABOUT</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../contact us/contact.html">CONTACT</a>
+            </li>
+          </ul>
+
+          <!-- Right Side Actions -->
+          <div class="d-flex align-items-center gap-3">
+             <!-- Cart Icon -->
+            <div
+              class="cart position-relative me-2"
+              onclick="window.location.href='../product/checkout.html'"
+              style="cursor: pointer"
+            >
+              <button
+                style="border: none; background-color: transparent; padding: 0"
+              >
+                <img
+                  src="../icon/icons8-cart-48.png"
+                  alt="Cart"
+                  style="width: 28px; height: 28px"
+                />
+                <span
+                  class="js-cart-quantity position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                  style="font-size: 0.7rem"
+                  >0</span
+                >
+              </button>
+            </div>
+            
+            <a href="../siginup/signup.html" class="btn btn-success btn-sm fw-bold text-white">Sign Up</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const cart = JSON.parse(localStorage.getItem("cartItems")) || [];
+            const total = cart.reduce((sum, i) => sum + i.quantity, 0);
+            document.querySelectorAll(".js-cart-quantity").forEach((e) => (e.textContent = total));
+        });
+    </script>
 
     <!-- Main Content -->
     <div class="main-content" style="padding-top: 70px;">

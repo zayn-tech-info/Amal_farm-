@@ -121,12 +121,16 @@ h6 {
     left: 0;
     right: 0;
     z-index: 1030;
-    height: 16vh;
-    /* padding: 0.5rem 1.5rem; */
-    background: var(--gradient-2);
-    border: none !important;
-    box-shadow: none !important;
-    outline: none !important;
+    /* height: 16vh; Remove fixed height to avoid layout issues */
+    padding: 0.8rem 1.5rem;
+    
+    /* Glassmorphism */
+    background: rgba(250, 246, 240, 0.85) !important; /* Slightly beige tint */
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5) !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05) !important;
+    
     animation: slideInDown 0.6s ease-out;
 }
 

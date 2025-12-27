@@ -440,46 +440,95 @@
     <!-- Main Content -->
     <div class="content-wrapper">
         <!-- Navigation -->
-        <nav class="navbar navbar-expand-lg navbar-light">
-            <div class="container">
-                <a class="navbar-brand d-flex align-items-center" href="../index.html">
-                    <img src="../images/amalllllllogo.png" alt="Amal Farm">
-                    Amal Farm
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav ms-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="../index.html">
-                                <i class="fas fa-home"></i> Home
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="product.html">
-                                <i class="fas fa-store"></i> Shop
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="../dashboard/index.html">
-                                <i class="fas fa-user"></i> My Dashboard
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#help">
-                                <i class="fas fa-question-circle"></i> Help
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" href="checkout.html">
-                                <i class="fas fa-shopping-cart"></i> Cart
-                            </a>
-                        </li>
-                    </ul>
-                </div>
+        <nav class="navbar navbar-expand-lg">
+      <div class="container">
+        <!-- Brand -->
+        <a class="navbar-brand d-flex align-items-center" href="../index.html">
+          <img
+            src="../images/amalllllllogo.png"
+            alt="Amal Farm"
+            class="site-logo me-2"
+          />
+          <span class="fw-bold" style="color: #000;">Amal Farm</span>
+        </a>
+
+        <!-- Mobile Toggle -->
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Menu Links -->
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" href="../index.html">HOME</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="product.html">SHOP</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../index.html#about">ABOUT</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../contact us/contact.html">CONTACT</a>
+            </li>
+          </ul>
+
+          <!-- Right Side Actions -->
+          <div class="d-flex align-items-center gap-3">
+            <!-- Cart Icon -->
+            <div
+              class="cart position-relative me-2"
+              onclick="toggleCartPopup()"
+              style="cursor: pointer"
+            >
+              <button
+                style="border: none; background-color: transparent; padding: 0"
+              >
+                <img
+                  src="../icon/icons8-cart-48.png"
+                  alt="Cart"
+                  style="width: 28px; height: 28px"
+                />
+                <span
+                  class="js-cart-quantity position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                  style="font-size: 0.7rem"
+                  >0</span
+                >
+              </button>
             </div>
-        </nav>
+            
+            <!-- Auth Buttons -->
+            <div class="d-none d-lg-flex gap-2">
+                <a href="../signin/signin.html" class="btn btn-outline-success btn-sm fw-bold">Sign In</a>
+                <a href="../siginup/signup.html" class="btn btn-success btn-sm fw-bold text-white">Sign Up</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const cart = JSON.parse(localStorage.getItem("cartItems")) || [];
+        const total = cart.reduce((sum, i) => sum + i.quantity, 0);
+        document
+          .querySelectorAll(".js-cart-quantity")
+          .forEach((e) => (e.textContent = total));
+      });
+      function toggleCartPopup() {
+        const cart = JSON.parse(localStorage.getItem("cartItems")) || [];
+        if (cart.length > 0) window.location.href = "checkout.html"; // Stay on checkout or refresh
+        else alert("Cart is empty!");
+      }
+    </script>
 
         <!-- Cart Header -->
         <div class="cart-header">
